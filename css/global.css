@@ -321,3 +321,10 @@ html.dark #doc img.invert {
 .dark .favorite-quote {
   color: #ccc;
 }
+
+/* lets have content to be centered and have some padding in side */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
