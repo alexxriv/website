@@ -328,3 +328,22 @@ html.dark #doc img.invert {
   margin: 0 auto;
   padding: 1rem;
 }
+.wikipedia-snippet {
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  border: 1px solid #ccc; /* Light gray border */
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-family: sans-serif;
+  line-height: 1.5;
+  max-width: 600px; /* Adjust as desired */
+}
+
+.wikipedia-snippet a {
+  color: #0645ad; /* Wikipedia-style blue links */
+  text-decoration: none;
+}
+
+.wikipedia-snippet a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
