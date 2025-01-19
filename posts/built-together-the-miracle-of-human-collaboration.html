@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Built Together: The Miracle of Human Collaboration</title>
+    <link rel="stylesheet" href="../css/global.css" />
+  </head>
+  <body>
+    <div
+      id="doc"
+      class="container-fluid markdown-body comment-enabled"
+      data-hard-breaks="true"
+    >
+      <div id="color-mode-switch">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3
+             m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707
+             m12.728 0l-.707.707M6.343 17.657l-.707.707
+             M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+        <input type="checkbox" id="switch" />
+        <label for="switch">Dark Mode Toggle</label>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20.354 15.354A9 9 0
+             018.646 3.646 9.003 9.003 0
+             0012 21a9.003 9.003 0
+             008.354-5.646z"
+          />
+        </svg>
+      </div>
+
+      <div class="content">
+        <p><a href="../index.html">Back to home</a></p>
+        <p style="color: #888">2025 Jan 18</p>
+
+        <h1>Built Together: The Miracle of Human Collaboration</h1>
+        <!-- "Back" link -->
+
+        <p style="text-align: center">
+          <img alt="Steve Jobs" width="400" src="/images/stevejobs.png" />
+        </p>
+        <p>
+          Through my life, I’ve always been amazed by what humanity has built. I
+          often think to myself that I’m not surrounded by mere objects; I’m
+          surrounded by ideas, by collaboration, by the combined effort of
+          countless people. Everything around me hides stories that I can’t stop
+          wondering about.
+        </p>
+        <p>
+          When I walk down the street, I am amazed at how the city was
+          designed—what materials were used to build the roads, who planned the
+          layout of the neighborhoods, and how it all came together.
+        </p>
+        <p>
+          When I watch a movie, I don’t just see actors delivering lines. I
+          imagine how it was directed, what the actors were thinking, who
+          designed their costumes, and how someone painstakingly wrote the
+          script.
+        </p>
+        <p>
+          Even something as simple as a park bench makes me curious—who decided
+          on its design, chose the wood or metal, and placed it exactly where it
+          stands?
+        </p>
+        <p>
+          None of this is the work of one person. And that’s what astonishes me
+          about humanity: our ability to collaborate on such vast scales that
+          even the simplest objects carry the invisible fingerprints of
+          countless hands.
+        </p>
+        <p>
+          I once read an essay titled <em>I, Pencil</em>, which captured this
+          feeling perfectly. The essay is written from the perspective of a
+          pencil, describing its own existence as a miracle. At first glance, a
+          pencil seems simple—a piece of wood, a graphite core, a bit of metal,
+          and an eraser. But when you trace its creation, you realize how
+          extraordinary it really is.
+        </p>
+        <p>
+          The wood might come from a tree in Oregon, cut down with saws, ropes,
+          and other specialized tools. The graphite is mined in Sri Lanka, mixed
+          with clay from Mississippi, treated with wax from Mexico, and
+          transported across the globe. The metal ferrule is made from zinc and
+          copper, refined and shaped into shiny brass by skilled hands. The
+          eraser is crafted from oil sourced in Indonesia, mixed with additives
+          from Italy. Every material has traveled great distances, passing
+          through countless hands and processes—all to create a simple pencil.
+        </p>
+        <p>
+          By now, you understand my point: nobody knows how to make a pencil.
+          Not entirely. Every person involved contributes just a fraction, and
+          yet, together, they produce something functional, beautiful, and
+          universal. It’s a miracle that we can create anything at all.
+        </p>
+        <p>
+          This system of global cooperation—born not out of a central plan but
+          from billions of small actions—is what allows us to build
+          extraordinary things. People are often impressed by the power of the
+          human brain, but I think what’s even more remarkable is how billions
+          of brains interact. Across cultures, languages, religions, and
+          beliefs, we collaborate, sometimes unknowingly, to create a world none
+          of us could build alone.
+        </p>
+        <p>
+          Who designed the sidewalk? Who designed the stop sign? The water
+          fountain? These things are so ubiquitous, their creators are
+          forgotten.
+        </p>
+        <p>
+          And perhaps that’s the ultimate goal: to create something so
+          seamlessly integrated into life that it transcends individual credit.
+        </p>
+        <p>
+          When no one remembers who made it—only that it exists, working,
+          serving us all—that’s the purest testament to collaboration.
+        </p>
+
+        <!-- "Back" link -->
+        <p><a href="../index.html">Back to home</a></p>
+      </div>
+
+      <script>
+        // (Same dark-mode script as in index.html, if you want it working here too)
+        const toggleDarkMode = () => {
+          const root = document.querySelector("html");
+          root.classList.toggle("dark");
+        };
+        const toggleColorScheme = () => {
+          const colorScheme = localStorage.getItem("colorScheme");
+          if (colorScheme === "light")
+            localStorage.setItem("colorScheme", "dark");
+          else localStorage.setItem("colorScheme", "light");
+        };
+        const toggle = document.querySelector(
+          '#color-mode-switch input[type="checkbox"]'
+        );
+        if (toggle)
+          toggle.onclick = () => {
+            toggleDarkMode();
+            toggleColorScheme();
+          };
+        const checkColorScheme = () => {
+          const colorScheme = localStorage.getItem("colorScheme");
+          if (colorScheme === null || colorScheme === undefined) {
+            localStorage.setItem("colorScheme", "light");
+          }
+          if (colorScheme === "dark") {
+            toggle.checked = true;
+            toggleDarkMode();
+          }
+        };
+        checkColorScheme();
+      </script>
+    </div>
+  </body>
+</html>
