@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>predicting human brain resting states using transformers</title>
+    <link rel="stylesheet" href="../css/global.css" />
+  </head>
+  <body>
+    <div
+      id="doc"
+      class="container-fluid markdown-body comment-enabled"
+      data-hard-breaks="true"
+    >
+      <div id="color-mode-switch">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3
+             m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707
+             m12.728 0l-.707.707M6.343 17.657l-.707.707
+             M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+        <input type="checkbox" id="switch" />
+        <label for="switch">Dark Mode Toggle</label>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20.354 15.354A9 9 0
+             018.646 3.646 9.003 9.003 0
+             0012 21a9.003 9.003 0
+             008.354-5.646z"
+          />
+        </svg>
+      </div>
+
+      <div class="content">
+        <p style="color: #888">2025 Jan 19</p>
+        <!-- "Back" link -->
+        <p><a href="../index.html">Back to home</a></p>
+
+        <h1>
+          <strong
+            >predicting human brain resting states using transformers</strong
+          >
+        </h1>
+        <p>
+          this are some notes i put together while reading
+          <a href="https://arxiv.org/pdf/2412.19814v1"
+            ><strong
+              >predicting human brain resting states using transformers</strong
+            ></a
+          >
+        </p>
+        <h2><strong>abstract:</strong></h2>
+        <p>
+          the <strong>human brain</strong> is complex and a highly dynamic
+          system. our current understanding of its functional mechanisms is
+          still very limited.
+        </p>
+        <p>
+          we can use
+          <strong>functional magnetic resonance imaging (fMRI)</strong> to
+          analyze <strong>blood oxygen level-dependent (BOLD)</strong> changes,
+          reflecting neural activity to infer brain states and dynamics.
+        </p>
+        <p>
+          the paper explores the possibility of the use of
+          <strong>transformers</strong> to predict
+          <strong>human brain resting states</strong> based on the large-scale
+          high-quality <strong>fMRI</strong> data from the
+          <strong>human connectome project (HCP)</strong>. the
+          <strong>HCP</strong> is a research initiative aimed at mapping the
+          neural connections of the human brain.
+        </p>
+        <h2><strong>intro:</strong></h2>
+        <h3><strong>what is fMRI?</strong></h3>
+        <p>
+          it is a widely used <strong>non-invasive</strong> and
+          <strong>in-vivo</strong> technique to observe whole brain dynamics
+          spatially at the <strong>meso-scale</strong> and temporally at the
+          <strong>second scale</strong>.
+        </p>
+        <p>
+          the <strong>meso-scale</strong> refers to an intermediate level of
+          detail in spatial resolution, capturing clusters of neurons or
+          specific functional areas. not down to individual neurons or synapses.
+          it's a middle ground between very fine (microscopic) and very broad
+          (macroscopic) levels of detail.
+        </p>
+        <p>
+          the <strong>second scale</strong> refers to the temporal resolution of
+          <strong>fMRI</strong>, meaning that it can capture changes in brain
+          activity over periods of seconds. while <strong>fMRI</strong> cannot
+          provide millisecond-level precision like some other methods (e.g.,
+          <strong>EEG</strong>), it is well-suited for observing slower
+          dynamics, such as blood flow changes related to neural activity.
+        </p>
+        <h3><strong>why predict brain states?</strong></h3>
+        <ul>
+          <li>
+            <p>
+              <strong>reduce scan time:</strong> <strong>fMRI</strong> scans can
+              be lengthy and challenging for some individuals, such as those
+              with movement disorders or young children. if we can predict
+              future brain states accurately, it may be able to shorten the scan
+              time without losing important information.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>early detection of disorders:</strong> some brain
+              disorders, like <strong>epilepsy</strong>, have distinct patterns
+              of brain activity that can be detected with <strong>fMRI</strong>.
+              by predicting future brain states, it may be able to identify
+              these patterns earlier and provide timely interventions.
+            </p>
+          </li>
+        </ul>
+        <h3><strong>why use transformers?</strong></h3>
+        <p>
+          given the ability of <strong>transformers</strong> to find
+          long-distance relationships between data tokens (in our case, brain
+          states) grounded in correlations and with links to
+          <strong>graph theory</strong>,
+          <strong>self-attention-based architectures</strong> could have the
+          ability to learn patterns from sequential brain activity and predict
+          the upcoming brain states.
+        </p>
+        <h2><strong>methods:</strong></h2>
+        <h3><strong>data preprocessing:</strong></h3>
+        <ul>
+          <li>
+            <p>
+              the dataset was preprocessed to remove <strong>noise</strong> and
+              unwanted signals, and the brain activity signals were
+              <strong>smoothed</strong> to reduce random noise and make the
+              signals clearer.
+            </p>
+          </li>
+          <li>
+            <p>
+              the data was <strong>filtered</strong> to keep only the brain
+              activity signals we were interested in, which change within a
+              specific speed range.
+            </p>
+          </li>
+          <li>
+            <p>
+              the data was <strong>adjusted</strong> so the average value was
+              zero, and the range of variation was consistent across the
+              dataset.
+            </p>
+          </li>
+          <li>
+            <p>
+              the brain was divided into <strong>379 regions</strong>, and the
+              activity for each region was measured and averaged over time to
+              create a single <strong>"snapshot"</strong> of brain activity for
+              all regions at each moment.
+            </p>
+          </li>
+        </ul>
+        <h3><strong>model architecture:</strong></h3>
+        <ul>
+          <li>
+            <p>
+              the model used a <strong>transformer architecture</strong>, which
+              is a type of neural network that excels at processing
+              <strong>sequential data</strong>.
+            </p>
+          </li>
+          <li>
+            <p>
+              the <strong>transformer</strong> processes time-series data as a
+              sequence of small pieces, called <strong>tokens</strong>, over a
+              specific time window. it uses a method called
+              <strong>"self-attention"</strong> to find connections between
+              these tokens, but since it doesn’t automatically know the order,
+              they added information about the order using a mathematical
+              pattern (<strong>sine and cosine functions</strong>).
+            </p>
+          </li>
+          <li>
+            <p>
+              the model had two main parts: an <strong>encoder</strong> and a
+              <strong>decoder</strong>. the <strong>encoder</strong> analyzed
+              the input data, and the <strong>decoder</strong> predicted the
+              next brain state based on the encoder’s output.
+            </p>
+          </li>
+        </ul>
+        <h2><strong>training:</strong></h2>
+        <ul>
+          <li>
+            <p>
+              the task of predicting brain states was set up as an
+              <strong>autoregression task</strong>, meaning the model predicts
+              the next brain state based on the previous ones.
+            </p>
+          </li>
+          <li>
+            <p>
+              to measure how good or bad the model’s predictions were, they used
+              <strong>mean squared error (MSE)</strong>. this calculates the
+              average difference between the predicted values and the actual
+              values, with bigger penalties for larger errors.
+            </p>
+          </li>
+          <li>
+            <p>
+              to improve the model during training, they used an algorithm
+              called the <strong>adam optimizer</strong>, which adjusts the
+              model’s settings step by step to make it more accurate.
+            </p>
+          </li>
+          <li>
+            <p>
+              the optimizer started with a
+              <strong>small learning rate</strong> of
+              <strong>0.0001 (10⁻⁴)</strong>, which controls how big each
+              adjustment step was, to ensure smooth and stable training.
+            </p>
+          </li>
+        </ul>
+        <h2><strong>evaluation:</strong></h2>
+        <ul>
+          <li>
+            the model's ability to predict a longer sequence of brain states was
+            tested by starting with a small amount of real
+            <strong>fMRI</strong> data (<strong>30 time points</strong>).
+          </li>
+          <li>
+            using the <strong>30 real data points</strong>, the model predicted
+            the next point. this prediction was added to the sequence, and the
+            input window was shifted to include it for the next prediction.
+          </li>
+          <li>
+            this process was repeated until a full sequence of synthetic data
+            (<strong>1150 time points</strong>) was created, matching the length
+            of the real data (<strong>1200 time points</strong>).
+          </li>
+          <li>compared the predicted sequence with the actual data using:</li>
+          <li>
+            <strong>MSE:</strong> to measure how close the predictions were to
+            the actual data.
+          </li>
+          <li>
+            <strong>spearman’s correlation:</strong> to check if the predicted
+            and actual brain states followed similar patterns, even if they
+            weren't identical.
+          </li>
+        </ul>
+        <h2><strong>results and discussion:</strong></h2>
+        <p>
+          results provide strong evidence that the
+          <strong>transformer model</strong> effectively learned and leveraged
+          the <strong>temporal dependencies</strong> present in the
+          <strong>fMRI</strong> time series.
+        </p>
+        <p>
+          overall, results of the time series prediction show that future brain
+          states of around <strong>5.04s</strong> can be accurately predicted
+          using a short <strong>fMRI</strong> sequence of only
+          <strong>21.6s.</strong>
+        </p>
+        <h2><strong>conclusion:</strong></h2>
+        <p>
+          the results demonstrated that this method could actually learn the
+          <strong>temporal dependencies</strong> of brain states over time and
+          accurately predict approximately <strong>5.04s</strong> based on
+          <strong>21.6s</strong> of <strong>fMRI</strong> data.
+        </p>
+        <p>
+          this shows the possibility of using a short
+          <strong>fMRI</strong> segment for future brain state prediction.
+        </p>
+
+        <!-- "Back" link -->
+        <p><a href="../index.html">Back to home</a></p>
+      </div>
+
+      <script>
+        // (Same dark-mode script as in index.html, if you want it working here too)
+        const toggleDarkMode = () => {
+          const root = document.querySelector("html");
+          root.classList.toggle("dark");
+        };
+        const toggleColorScheme = () => {
+          const colorScheme = localStorage.getItem("colorScheme");
+          if (colorScheme === "light")
+            localStorage.setItem("colorScheme", "dark");
+          else localStorage.setItem("colorScheme", "light");
+        };
+        const toggle = document.querySelector(
+          '#color-mode-switch input[type="checkbox"]'
+        );
+        if (toggle)
+          toggle.onclick = () => {
+            toggleDarkMode();
+            toggleColorScheme();
+          };
+        const checkColorScheme = () => {
+          const colorScheme = localStorage.getItem("colorScheme");
+          if (colorScheme === null || colorScheme === undefined) {
+            localStorage.setItem("colorScheme", "light");
+          }
+          if (colorScheme === "dark") {
+            toggle.checked = true;
+            toggleDarkMode();
+          }
+        };
+        checkColorScheme();
+      </script>
+    </div>
+  </body>
+</html>

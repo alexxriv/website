@@ -3,3 +3,4 @@ publish.py
 drafts
 .venv
 images_draft
+.DS_Store
